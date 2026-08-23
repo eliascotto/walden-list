@@ -1,0 +1,2 @@
+# One domain per line. Entries here are removed from the generated category.
+

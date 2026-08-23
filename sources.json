@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "output": "dist/v1",
+  "settings": {
+    "max_category_change_percent": 35
+  },
+  "sources": {
+    "bon-appetit": {
+      "repository": "https://github.com/Bon-Appetit/porn-domains.git",
+      "ref": "main",
+      "homepage": "https://github.com/Bon-Appetit/porn-domains",
+      "license": "CC-BY-SA-4.0"
+    },
+    "stevenblack": {
+      "repository": "https://github.com/StevenBlack/hosts.git",
+      "ref": "master",
+      "homepage": "https://github.com/StevenBlack/hosts",
+      "license": "MIT and upstream source licenses"
+    }
+  },
+  "categories": [
+    {
+      "id": "ads-malware",
+      "family": "ads-malware",
+      "name": "Advertising and malware",
+      "description": "Advertising, tracking, malware, fraud, and related risk domains from the StevenBlack base aggregation.",
+      "variant": "standard",
+      "default_variant": true,
+      "recommended": false,
+      "confidence": "medium",
+      "license": "LicenseRef-Multiple",
+      "strategy": "union",
+      "warning": "This source combines several risk types; it is broader than an advertising-only list.",
+      "inputs": [
+        {
+          "source": "stevenblack",
+          "path": "hosts",
+          "format": "hosts"
+        }
+      ],
+      "curation": {
+        "additions": "curation/additions/ads-malware.txt",
+        "allowlist": "curation/allowlists/ads-malware.txt"
+      }
+    },
+    {
+      "id": "fake-news",
+      "family": "fake-news",
+      "name": "Fake news",
+      "description": "Domains classified as fake-news outlets by the upstream category source.",
+      "variant": "standard",
+      "default_variant": true,
+      "recommended": false,
+      "confidence": "low",
+      "license": "MIT",
+      "strategy": "union",
+      "warning": "Classification is subjective and may become stale; review before enabling.",
+      "inputs": [
+        {
+          "source": "stevenblack",
+          "path": "alternates/fakenews-only/hosts",
+          "format": "hosts"
+        }
+      ],
+      "curation": {
+        "additions": "curation/additions/fake-news.txt",
+        "allowlist": "curation/allowlists/fake-news.txt"
+      }
+    },
+    {
+      "id": "gambling",
+      "family": "gambling",
+      "name": "Gambling",
+      "description": "Dedicated gambling and online betting domains from the StevenBlack category aggregation.",
+      "variant": "standard",
+      "default_variant": true,
+      "recommended": true,
+      "confidence": "high",
+      "license": "MIT",
+      "strategy": "union",
+      "inputs": [
+        {
+          "source": "stevenblack",
+          "path": "alternates/gambling-only/hosts",
+          "format": "hosts"
+        }
+      ],
+      "curation": {
+        "additions": "curation/additions/gambling.txt",
+        "allowlist": "curation/allowlists/gambling.txt"
+      }
+    },
+    {
+      "id": "social-media",
+      "family": "social-media",
+      "name": "Social media",
+      "description": "Social-network domains and service subdomains from the StevenBlack category aggregation.",
+      "variant": "standard",
+      "default_variant": true,
+      "recommended": true,
+      "confidence": "high",
+      "license": "MIT",
+      "strategy": "union",
+      "inputs": [
+        {
+          "source": "stevenblack",
+          "path": "alternates/social-only/hosts",
+          "format": "hosts"
+        }
+      ],
+      "curation": {
+        "additions": "curation/additions/social-media.txt",
+        "allowlist": "curation/allowlists/social-media.txt"
+      }
+    },
+    {
+      "id": "porn",
+      "family": "porn",
+      "name": "Pornography",
+      "description": "Higher-confidence adult-content domains present in both upstream aggregations.",
+      "variant": "standard",
+      "default_variant": true,
+      "recommended": true,
+      "confidence": "high",
+      "license": "CC-BY-SA-4.0",
+      "strategy": "intersection",
+      "inputs": [
+        {
+          "source": "stevenblack",
+          "path": "alternates/porn-only/hosts",
+          "format": "hosts"
+        },
+        {
+          "source": "bon-appetit",
+          "path_from_json": "meta.json",
+          "json_key": "blocklist.name",
+          "format": "domains"
+        }
+      ],
+      "excludes": [
+        {
+          "source": "bon-appetit",
+          "path_from_json": "meta.json",
+          "json_key": "allowlist.name",
+          "format": "domains"
+        }
+      ],
+      "curation": {
+        "additions": "curation/additions/porn.txt",
+        "allowlist": "curation/allowlists/porn.txt"
+      }
+    },
+    {
+      "id": "porn-extended",
+      "family": "porn",
+      "name": "Pornography — extended",
+      "description": "Aggressive union of both adult-content aggregations, after applying upstream and local allowlists.",
+      "variant": "extended",
+      "default_variant": false,
+      "recommended": false,
+      "confidence": "low",
+      "license": "CC-BY-SA-4.0",
+      "strategy": "union",
+      "warning": "Large aggressive list with increased false-positive and performance risk.",
+      "inputs": [
+        {
+          "source": "stevenblack",
+          "path": "alternates/porn-only/hosts",
+          "format": "hosts"
+        },
+        {
+          "source": "bon-appetit",
+          "path_from_json": "meta.json",
+          "json_key": "blocklist.name",
+          "format": "domains"
+        }
+      ],
+      "excludes": [
+        {
+          "source": "bon-appetit",
+          "path_from_json": "meta.json",
+          "json_key": "allowlist.name",
+          "format": "domains"
+        }
+      ],
+      "curation": {
+        "additions": "curation/additions/porn-extended.txt",
+        "allowlist": "curation/allowlists/porn-extended.txt"
+      }
+    }
+  ]
+}
+

@@ -1,0 +1,288 @@
+{
+  "categories": {
+    "ads-malware": {
+      "bytes": 1984250,
+      "confidence": "medium",
+      "curation": {
+        "additions": 0,
+        "allowlist": 0
+      },
+      "default_variant": true,
+      "description": "Advertising, tracking, malware, fraud, and related risk domains from the StevenBlack base aggregation.",
+      "domains": 96766,
+      "excludes": [],
+      "family": "ads-malware",
+      "format": "domains-v1",
+      "included_by_default": false,
+      "inputs": [
+        {
+          "accepted": 96766,
+          "candidates": 96780,
+          "format": "hosts",
+          "lines": 103580,
+          "path": "hosts",
+          "rejected": 14,
+          "rejected_samples": [
+            "localhost",
+            "localhost.localdomain",
+            "local",
+            "broadcasthost",
+            "localhost",
+            "ip6-localhost",
+            "ip6-loopback",
+            "localhost",
+            "ip6-localnet",
+            "ip6-mcastprefix"
+          ],
+          "sha256": "09107a972a0f72600fa0f04036b23951d7cbfcfbbe5239369084476afc548eab",
+          "source": "stevenblack"
+        }
+      ],
+      "license": "LicenseRef-Multiple",
+      "name": "Advertising and malware",
+      "path": "categories/ads-malware.txt",
+      "recommended": false,
+      "sha256": "90c77bd46868ee124ee3fda7fe41d0a558d719b60913f0173228aa443ecfca2d",
+      "strategy": "union",
+      "variant": "standard",
+      "warning": "This source combines several risk types; it is broader than an advertising-only list."
+    },
+    "fake-news": {
+      "bytes": 41143,
+      "confidence": "low",
+      "curation": {
+        "additions": 0,
+        "allowlist": 0
+      },
+      "default_variant": true,
+      "description": "Domains classified as fake-news outlets by the upstream category source.",
+      "domains": 2187,
+      "excludes": [],
+      "family": "fake-news",
+      "format": "domains-v1",
+      "included_by_default": false,
+      "inputs": [
+        {
+          "accepted": 2187,
+          "candidates": 2187,
+          "format": "hosts",
+          "lines": 2215,
+          "path": "alternates/fakenews-only/hosts",
+          "rejected": 0,
+          "sha256": "18630564b6e6773a01ea1da1bf6391ed48decd87d23e8d3330ddc9d158f494f6",
+          "source": "stevenblack"
+        }
+      ],
+      "license": "MIT",
+      "name": "Fake news",
+      "path": "categories/fake-news.txt",
+      "recommended": false,
+      "sha256": "efba4696e818c006980f5f9d1005df8220e0c15e117650562d832ea2b45cab7b",
+      "strategy": "union",
+      "variant": "standard",
+      "warning": "Classification is subjective and may become stale; review before enabling."
+    },
+    "gambling": {
+      "bytes": 89471,
+      "confidence": "high",
+      "curation": {
+        "additions": 0,
+        "allowlist": 0
+      },
+      "default_variant": true,
+      "description": "Dedicated gambling and online betting domains from the StevenBlack category aggregation.",
+      "domains": 6395,
+      "excludes": [],
+      "family": "gambling",
+      "format": "domains-v1",
+      "included_by_default": false,
+      "inputs": [
+        {
+          "accepted": 6395,
+          "candidates": 6395,
+          "format": "hosts",
+          "lines": 6434,
+          "path": "alternates/gambling-only/hosts",
+          "rejected": 0,
+          "sha256": "cbe20966cfa538fd3d0012d7a914859e6d530fb43f6fcc261baf3c3924873efa",
+          "source": "stevenblack"
+        }
+      ],
+      "license": "MIT",
+      "name": "Gambling",
+      "path": "categories/gambling.txt",
+      "recommended": true,
+      "sha256": "0d077c3e22e8ec29c6954d9987cadc191f21752e3cae6c56980b6581c86808bc",
+      "strategy": "union",
+      "variant": "standard"
+    },
+    "porn": {
+      "bytes": 550733,
+      "confidence": "high",
+      "curation": {
+        "additions": 0,
+        "allowlist": 0
+      },
+      "default_variant": true,
+      "description": "Higher-confidence adult-content domains present in both upstream aggregations.",
+      "domains": 35332,
+      "excludes": [
+        {
+          "accepted": 15090,
+          "candidates": 15090,
+          "format": "domains",
+          "lines": 15090,
+          "path": "allow.dcfa1cfafc.jrvjcd.txt",
+          "rejected": 0,
+          "sha256": "e470027f8b54811bc0f41e9185187b5fbfdfb77c1161759eebd4ca825a4f7b13",
+          "source": "bon-appetit"
+        }
+      ],
+      "family": "porn",
+      "format": "domains-v1",
+      "included_by_default": false,
+      "inputs": [
+        {
+          "accepted": 76747,
+          "candidates": 76747,
+          "format": "hosts",
+          "lines": 76820,
+          "path": "alternates/porn-only/hosts",
+          "rejected": 0,
+          "sha256": "17bcfd2dde4ffd886c9249ab7a745623fda7e726afca0497d1aa46cdcd40bb12",
+          "source": "stevenblack"
+        },
+        {
+          "accepted": 303526,
+          "candidates": 303526,
+          "format": "domains",
+          "lines": 303526,
+          "path": "block.780fb2dbc9.s4kjuc.txt",
+          "rejected": 0,
+          "sha256": "8405594bac355aaa103c2b18709adf9101e5af86143210d73c476771f7f376e0",
+          "source": "bon-appetit"
+        }
+      ],
+      "license": "CC-BY-SA-4.0",
+      "name": "Pornography",
+      "path": "categories/porn.txt",
+      "recommended": true,
+      "sha256": "0b6955c7592ace24acdd9f7962fb77b0f837988a7604dc396a9f80f984d981b9",
+      "strategy": "intersection",
+      "variant": "standard"
+    },
+    "porn-extended": {
+      "bytes": 5738356,
+      "confidence": "low",
+      "curation": {
+        "additions": 0,
+        "allowlist": 0
+      },
+      "default_variant": false,
+      "description": "Aggressive union of both adult-content aggregations, after applying upstream and local allowlists.",
+      "domains": 344932,
+      "excludes": [
+        {
+          "accepted": 15090,
+          "candidates": 15090,
+          "format": "domains",
+          "lines": 15090,
+          "path": "allow.dcfa1cfafc.jrvjcd.txt",
+          "rejected": 0,
+          "sha256": "e470027f8b54811bc0f41e9185187b5fbfdfb77c1161759eebd4ca825a4f7b13",
+          "source": "bon-appetit"
+        }
+      ],
+      "family": "porn",
+      "format": "domains-v1",
+      "included_by_default": false,
+      "inputs": [
+        {
+          "accepted": 76747,
+          "candidates": 76747,
+          "format": "hosts",
+          "lines": 76820,
+          "path": "alternates/porn-only/hosts",
+          "rejected": 0,
+          "sha256": "17bcfd2dde4ffd886c9249ab7a745623fda7e726afca0497d1aa46cdcd40bb12",
+          "source": "stevenblack"
+        },
+        {
+          "accepted": 303526,
+          "candidates": 303526,
+          "format": "domains",
+          "lines": 303526,
+          "path": "block.780fb2dbc9.s4kjuc.txt",
+          "rejected": 0,
+          "sha256": "8405594bac355aaa103c2b18709adf9101e5af86143210d73c476771f7f376e0",
+          "source": "bon-appetit"
+        }
+      ],
+      "license": "CC-BY-SA-4.0",
+      "name": "Pornography \u2014 extended",
+      "path": "categories/porn-extended.txt",
+      "recommended": false,
+      "sha256": "897248a2259b3a1b338c17901cf65b788ba90b55c23b50f354d9e1c809ac4988",
+      "strategy": "union",
+      "variant": "extended",
+      "warning": "Large aggressive list with increased false-positive and performance risk."
+    },
+    "social-media": {
+      "bytes": 85842,
+      "confidence": "high",
+      "curation": {
+        "additions": 0,
+        "allowlist": 0
+      },
+      "default_variant": true,
+      "description": "Social-network domains and service subdomains from the StevenBlack category aggregation.",
+      "domains": 3244,
+      "excludes": [],
+      "family": "social-media",
+      "format": "domains-v1",
+      "included_by_default": false,
+      "inputs": [
+        {
+          "accepted": 3244,
+          "candidates": 3244,
+          "format": "hosts",
+          "lines": 3317,
+          "path": "alternates/social-only/hosts",
+          "rejected": 0,
+          "sha256": "c36be17e62b7bf63f36b292265ea7de42a984748718f25863615791ba4f2f213",
+          "source": "stevenblack"
+        }
+      ],
+      "license": "MIT",
+      "name": "Social media",
+      "path": "categories/social-media.txt",
+      "recommended": true,
+      "sha256": "01fd6f9adea74d50ec688d1e189a01482487a34c14cd85333bd8068aa6108bf0",
+      "strategy": "union",
+      "variant": "standard"
+    }
+  },
+  "categories_are_opt_in": true,
+  "format": "walden-domain-registry-v1",
+  "generated_at": "2026-07-30T07:17:05Z",
+  "reproducible": true,
+  "schema_version": 1,
+  "sources": {
+    "bon-appetit": {
+      "commit": "b34e80347e3d95330e9237621890f0ac98a2bbf3",
+      "committed_at": "2026-07-30T07:17:05Z",
+      "homepage": "https://github.com/Bon-Appetit/porn-domains",
+      "license": "CC-BY-SA-4.0",
+      "ref": "main",
+      "repository": "https://github.com/Bon-Appetit/porn-domains.git"
+    },
+    "stevenblack": {
+      "commit": "56641ec920b3dda4a62901b7cdd4d6f4cca86ed9",
+      "committed_at": "2026-07-28T00:55:32Z",
+      "homepage": "https://github.com/StevenBlack/hosts",
+      "license": "MIT and upstream source licenses",
+      "ref": "master",
+      "repository": "https://github.com/StevenBlack/hosts.git"
+    }
+  }
+}
