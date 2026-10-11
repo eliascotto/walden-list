@@ -25,8 +25,7 @@ def _git(*args: str, cwd: Path | None = None) -> str:
         cwd=cwd,
         check=True,
         text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
+        capture_output=True
     )
     return result.stdout.strip()
 
@@ -51,7 +50,7 @@ class SourceResolver:
     def close(self) -> None:
         self._temporary.cleanup()
 
-    def __enter__(self) -> "SourceResolver":
+    def __enter__(self) -> SourceResolver:
         return self
 
     def __exit__(self, *_: object) -> None:
@@ -83,10 +82,11 @@ class SourceResolver:
 
 
 def safe_source_path(root: Path, relative: str) -> Path:
+    # On Mac: /var is a symlink to /private/var so need to resolve root before comparing
+    root = root.resolve()
     path = (root / relative).resolve()
     if path != root and root not in path.parents:
         raise ValueError(f"source path escapes repository: {relative}")
     if not path.is_file():
         raise FileNotFoundError(path)
     return path
-
